@@ -11,10 +11,15 @@ public class GetStock {
     	// 到 https://www.alphavantage.co/ 點選 GET FREE API KEY 取得金鑰
         String apiKey = "3NL508Z2BKD9KVXD";
         // 放進想查詢的股票名稱
-        String[] symbols = {"AAPL", "TSLA", "NVDA", "GOOG", "META", "MSFT", "2330.TW", "2454.TW", "2317.TW", "2412.TW", "2382.TW", "2881.TW"};
+        String[] symbols = {"AAPL", "TSLA", "NVDA", "GOOG", "META", "MSFT"};
 //        String[] symbols_TW = {"2330.TW", "2454.TW", "2317.TW", "2412.TW", "2382.TW", "2881.TW"};
         
         getStock(apiKey, symbols);
+
+
+	/* 
+ 		你要拿的是字串型態的stockName、currentPrice、changePercent
+	*/
 
     }
 
@@ -43,16 +48,12 @@ public class GetStock {
                     String stockName = globalQuote.optString("01. symbol", "N/A");
                     String currentPrice = globalQuote.optString("05. price", "N/A");
                     String changePercent = globalQuote.optString("10. change percent", "N/A");
-                    changePercent.substring(0, changePercent.length());
+                    changePercent = changePercent.substring(0, changePercent.length()-3);
+                    changePercent += "%";
 
-//                    System.out.println("股票名稱: " + stockName);
-//                    System.out.println("當前價格: " + currentPrice);
-//                    System.out.println("當日漲跌幅: " + changePercent);
-//                    System.out.println("------------------------");
-                    
                     System.out.printf("股票名稱: %s\n", stockName);
                     System.out.printf("當前價格: %.2f\n", Double.valueOf(currentPrice));
-                    System.out.printf("當日漲跌幅: %.2f%\n", Double.valueOf(changePercent.substring(0, changePercent.length())));
+                    System.out.printf("當日漲跌幅: %s\n", changePercent);
                     
                 } else {
                     System.out.println("股票查詢失敗");
