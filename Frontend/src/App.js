@@ -28,6 +28,7 @@ function App() {
     try {
       // const response = await fetch(`http://localhost:8080/search?query=${searchTerm}`);
       // const data = await response.json();
+
       const data = {
         "results": [
           { "title": "聯電官方網站", "link": "https://www.umc.com/" },
@@ -47,7 +48,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>React Search Engine</h1>
+        <h1>Stock Finder</h1>
         <div className="search-container">
           <input
             type="text"

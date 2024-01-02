@@ -17,11 +17,19 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
-<dependency>
-    <groupId>org.json</groupId>
-    <artifactId>json</artifactId>
-    <version>20210307</version> <!-- 請使用相容的版本 -->
-</dependency>
+
+		<dependency>
+			<groupId>com.kennycason</groupId>
+			<artifactId>kumo</artifactId>
+			<version>1.28</version>
+			<type>pom</type>
+		</dependency>
+
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20210307</version> <!-- 請使用相容的版本 -->
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
