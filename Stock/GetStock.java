@@ -11,10 +11,15 @@ public class GetStock {
     	// 到 https://www.alphavantage.co/ 點選 GET FREE API KEY 取得金鑰
         String apiKey = "3NL508Z2BKD9KVXD";
         // 放進想查詢的股票名稱
-        String[] symbols = {"AAPL", "TSLA", "NVDA", "GOOG", "META", "MSFT", "2330.TW", "2454.TW", "2317.TW", "2412.TW", "2382.TW", "2881.TW"};
+        String[] symbols = {"AAPL", "TSLA", "NVDA", "GOOG", "META", "MSFT"};
 //        String[] symbols_TW = {"2330.TW", "2454.TW", "2317.TW", "2412.TW", "2382.TW", "2881.TW"};
         
         getStock(apiKey, symbols);
+
+
+	/* 
+ 		你要拿的是字串型態的stockName、currentPrice、changePercent
+	*/
 
     }
 
