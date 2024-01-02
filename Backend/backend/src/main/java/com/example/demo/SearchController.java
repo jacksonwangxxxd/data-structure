@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -37,11 +39,20 @@ public class SearchController {
                 resultObject.put("title", title);
                 resultObject.put("link", link);
 
+                WordCounter counter = new WordCounter(link);
+                resultObject.put("score", counter.countKeyword(query));
+
                 results.add(resultObject);
             }
 
             JSONArray resultsArray = new JSONArray(results);
-            System.out.println(resultsArray);
+            List<JSONObject> jsonObjectList = resultsArray.toList().stream()
+                    .map(obj -> (JSONObject) obj)
+                    .collect(Collectors.toList());
+
+            // 使用 Comparator 根據 "score" 進行排序
+            jsonObjectList.sort(Comparator.comparing(obj -> obj.getString("score")));
+
             return resultsArray.toString();
         } catch (IOException e) {
             e.printStackTrace();
