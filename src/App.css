@@ -1,0 +1,85 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+}
+
+.search-container {
+  margin: 20px;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+    border-radius: 5px;
+      /* 設置鈍角的半徑 */
+}
+
+.search-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.result-item {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px;
+  width: 300px;
+}
+
+a {
+  color: #61dafb;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* 初始按鈕樣式 */
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #61dafb;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button {
+  padding: 10px;
+  background-color: #61dafb;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  /* 添加過渡效果 */
+}
+
+button:hover {
+  background-color: #4285f4;
+  /* 滑鼠懸停時的顏色 */
+}
+
+button:active {
+  transform: scale(0.95);
+  /* 添加按下時的縮小效果 */
+}
+
+.results-container {
+  text-align: left;
+}
+
+.image-container {
+  margin-top: 20px;
+}
