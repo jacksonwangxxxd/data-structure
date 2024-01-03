@@ -27,14 +27,15 @@ function StockWatchlist({ stocks, onStockClick }) {
     </div>
   ));
 
-  return <div className="list-container">{stockItems}</div>;}
+  return <div className="list-container">{stockItems}</div>;
+}
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState([]);
   const [stockWatchlist, setStockWatchlist] = useState([
-    { name: '台積電', price: ' $'+ 579.00, change: -2.36 },
-    { name: '聯電', price: ' $'+ 50.6, change: -2.50 },
+    { name: '台積電', price: ' $' + 579.00, change: -2.36 },
+    { name: '聯電', price: ' $' + 50.6, change: -2.50 },
     { name: '鴻海', price: ' $' + 104.6, change: -0.48 },
   ]);
 
@@ -42,35 +43,35 @@ function App() {
     try {
 
       // 模擬搜尋結果
-      if(searchTerm=='台積電'){
+      if (searchTerm == '台積電') {
         var data = {
           "results": [
-            { "title": "台積電股票價格即時行情", "link": "https://tw.stock.yahoo.com/quote/2330.TW" },
-            { "title": "台積電技術分析報告", "link": "https://tw.stock.yahoo.com/quote/2330.TW/technical-analysis" },
+            { "title": "台積電即時行情", "link": "https://tw.stock.yahoo.com/quote/2330.TW" },
+            { "title": "台積電技術分析", "link": "https://tw.tradingview.com/symbols/TWSE-2330/technicals/" },
             { "title": "台積電官方網站", "link": "https://www.tsmc.com/chinese" },
           ]
         };
-      }else if (searchTerm=='聯電'){
+      } else if (searchTerm == '聯電') {
         var data = {
           "results": [
-            { "title": "聯電股票價格即時行情", "link": "https://tw.stock.yahoo.com/quote/2303.TW" },
-            { "title": "聯電技術分析報告", "link": "https://tw.stock.yahoo.com/quote/2303.TW/technical-analysis" },
+            { "title": "聯電即時行情", "link": "https://tw.stock.yahoo.com/quote/2303.TW" },
+            { "title": "聯電技術分析", "link": "https://tw.tradingview.com/symbols/TWSE-2303/technicals/" },
             { "title": "聯電官方網站", "link": "https://www.umc.com/" },
           ]
         };
-      }else if (searchTerm=='鴻海'){
+      } else if (searchTerm == '鴻海') {
         var data = {
           "results": [
-            { "title": "鴻海股票價格即時行情", "link": "https://tw.stock.yahoo.com/quote/2317.TW" },
-            { "title": "鴻海技術分析報告", "link": "https://tw.stock.yahoo.com/quote/2317.TW/technical-analysis" },
+            { "title": "鴻海即時行情", "link": "https://tw.stock.yahoo.com/quote/2317.TW" },
+            { "title": "鴻海技術分析", "link": "https://tw.tradingview.com/symbols/TWSE-2317/technicals/" },
             { "title": "鴻海官方網站", "link": "https://www.honhai.com/zh-tw/" },
           ]
         };
-      }else if (searchTerm=='永豐金'){
+      } else if (searchTerm == '永豐金') {
         var data = {
           "results": [
-            { "title": "永豐金股票價格即時行情", "link": "https://tw.stock.yahoo.com/quote/2890.TW" },
-            { "title": "永豐金技術分析報告", "link": "https://tw.stock.yahoo.com/quote/2890.TW/technical-analysis" },
+            { "title": "永豐金即時行情", "link": "https://tw.stock.yahoo.com/quote/2890.TW" },
+            { "title": "永豐金技術分析", "link": "https://tw.tradingview.com/symbols/TWSE-2890/technicals/" },
             { "title": "永豐金官方網站", "link": "https://www.sinotrade.com.tw/newweb/" },
           ]
         };

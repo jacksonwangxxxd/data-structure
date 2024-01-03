@@ -24,11 +24,10 @@ function StockWatchlist() {
 
   const fetchStockData = async () => {
     try {
-      // 發送GET請求至Java後端獲取股票資訊
-      const response = await fetch('http://localhost:8080/getStock'); // 替換成實際的Java API端點
+      const response = await fetch('http://localhost:8080/getStock');
       const data = await response.json();
 
-      setStockWatchlist(data); // 將獲取的股票資訊設定到state中
+      setStockWatchlist(data);
     } catch (error) {
       console.error('Error fetching stock data:', error);
     }
@@ -50,11 +49,7 @@ function StockWatchlist() {
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState([]);
-  const [stockWatchlist, setStockWatchlist] = useState([
-    { name: '台積電', price: ' $'+ 579.00, change: -2.36 },
-    { name: '聯電', price: ' $'+ 50.6, change: -2.50 },
-    { name: '鴻海', price: ' $' + 104.6, change: -0.48 },
-  ]);
+  const [stockWatchlist, setStockWatchlist] = useState([]);
 
   const handleSearch = async () => {
     try {

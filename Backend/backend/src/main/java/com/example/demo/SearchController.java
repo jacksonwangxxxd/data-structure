@@ -23,40 +23,49 @@ public class SearchController {
 
     @GetMapping("/search")
     public String search(@RequestParam String query) {
-        String googleSearchUrl = "https://www.google.com/search?q=" + query;
+        String[] keywords = {
+                "即時行情", "技術分析", "官方網站"
+        };
 
-        try {
-            Document doc = Jsoup.connect(googleSearchUrl).get();
-            Elements searchResults = doc.select("div.g");
+        for (String k : keywords) {
+            String googleSearchUrl = "https://www.google.com/search?q=" + query + k;
 
-            List<JSONObject> results = new ArrayList<>();
+            try {
+                Document doc = Jsoup.connect(googleSearchUrl).get();
+                Elements searchResults = doc.select("div.g");
 
-            for (Element result : searchResults) {
-                String title = result.select("h3").text();
-                String link = result.select("a[href]").attr("href");
+                List<JSONObject> results = new ArrayList<>();
 
-                JSONObject resultObject = new JSONObject();
-                resultObject.put("title", title);
-                resultObject.put("link", link);
+                for (Element result : searchResults) {
+                    String title = result.select("h3").text();
+                    String link = result.select("a[href]").attr("href");
 
-                WordCounter counter = new WordCounter(link);
-                resultObject.put("score", counter.countKeyword(query));
+                    JSONObject resultObject = new JSONObject();
+                    resultObject.put("title", title);
+                    resultObject.put("link", link);
 
-                results.add(resultObject);
+                    WordCounter counter = new WordCounter(link);
+                    resultObject.put("score", counter.countKeyword(query));
+
+                    results.add(resultObject);
+                }
+
+                JSONArray resultsArray = new JSONArray(results);
+                List<JSONObject> jsonObjectList = resultsArray.toList().stream()
+                        .map(obj -> (JSONObject) obj)
+                        .collect(Collectors.toList());
+
+                // 使用 Comparator 根據 "score" 進行排序
+                jsonObjectList.sort(Comparator.comparing(obj -> obj.getString("score")));
+
+                return resultsArray.getJSONObject(0).toString();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "{\"error\": \"Error fetching search results\"}";
             }
 
-            JSONArray resultsArray = new JSONArray(results);
-            List<JSONObject> jsonObjectList = resultsArray.toList().stream()
-                    .map(obj -> (JSONObject) obj)
-                    .collect(Collectors.toList());
-
-            // 使用 Comparator 根據 "score" 進行排序
-            jsonObjectList.sort(Comparator.comparing(obj -> obj.getString("score")));
-
-            return resultsArray.toString();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return "{\"error\": \"Error fetching search results\"}";
         }
+
+        return null;
     }
 }
