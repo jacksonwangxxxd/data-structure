@@ -1,31 +1,26 @@
 package com.example.demo;
 
 import org.json.JSONObject;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+@CrossOrigin(origins = "http://localhost:3000")
+@RestController
 public class GetStock {
 
-    public static void main(String[] args) {
-        // 到 https://www.alphavantage.co/ 點選 GET FREE API KEY 取得金鑰
+    @GetMapping("/getStock")
+    public static String[] getStock() {
         String apiKey = "3NL508Z2BKD9KVXD";
-        // 放進想查詢的股票名稱
         String[] symbols = { "AAPL", "TSLA", "NVDA", "GOOG", "META", "MSFT" };
         // String[] symbols_TW = {"2330.TW", "2454.TW", "2317.TW", "2412.TW", "2382.TW",
         // "2881.TW"};
 
-        getStock(apiKey, symbols);
-
-        /*
-         * 你要拿的是字串型態的stockName、currentPrice、changePercent
-         */
-
-    }
-
-    public static void getStock(String apiKey, String[] symbols) {
         for (String symbol : symbols) {
             try {
                 String apiUrl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + symbol + "&apikey="
@@ -48,23 +43,25 @@ public class GetStock {
                 JSONObject globalQuote = jsonResponse.optJSONObject("Global Quote");
 
                 if (globalQuote != null && !globalQuote.isEmpty()) {
-                    String stockName = globalQuote.optString("01. symbol", "N/A");
-                    String currentPrice = globalQuote.optString("05. price", "N/A");
-                    String changePercent = globalQuote.optString("10. change percent", "N/A");
-                    changePercent = changePercent.substring(0, changePercent.length() - 3);
-                    changePercent += "%";
+                    String name = globalQuote.optString("01. symbol", "N/A");
+                    String price = globalQuote.optString("05. price", "N/A");
+                    String change = globalQuote.optString("10. change percent", "N/A");
+                    change = change.substring(0, change.length() - 3);
+                    change += "%";
 
-                    System.out.printf("股票名稱: %s\n", stockName);
-                    System.out.printf("當前價格: %.2f\n", Double.valueOf(currentPrice));
-                    System.out.printf("當日漲跌幅: %s\n", changePercent);
+                    String[] result = { name, price, change };
+                    return result;
 
                 } else {
                     System.out.println("股票查詢失敗");
+
                 }
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+
+        return null;
     }
 }

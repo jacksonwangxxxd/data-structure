@@ -27,40 +27,7 @@ function StockWatchlist({ stocks, onStockClick }) {
     </div>
   ));
 
-  return <div className="list-container">{stockItems}</div>;
-}
-
-// function StockWatchlist() {
-//   const [stockWatchlist, setStockWatchlist] = useState([]);
-
-//   useEffect(() => {
-//     fetchStockData();
-//   }, []);
-
-//   const fetchStockData = async () => {
-//     try {
-//       // 發送GET請求至Java後端獲取股票資訊
-//       const response = await fetch('http://localhost:8080/getStock'); // 替換成實際的Java API端點
-//       const data = await response.json();
-
-//       setStockWatchlist(data); // 將獲取的股票資訊設定到state中
-//     } catch (error) {
-//       console.error('Error fetching stock data:', error);
-//     }
-//   };
-
-//   const stockItems = stockWatchlist.map((stock, index) => (
-//     <div key={index} className="list-item">
-//       <span className="stock-name">{stock.name}</span>
-//       <span className="stock-price">{stock.price}</span>
-//       <span className={`stock-change ${stock.change > 0 ? 'positive' : 'negative'}`}>
-//         {stock.change > 0 ? '+' : ''}{stock.change}%
-//       </span>
-//     </div>
-//   ));
-
-//   return <div className="list-container">{stockItems}</div>;
-// }
+  return <div className="list-container">{stockItems}</div>;}
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -109,8 +76,6 @@ function App() {
         };
       }
 
-      // const response = await fetch(`http://localhost:8080/search?query=${query}`);
-      // const data = await response.json();
       setResults(data.results);
       console.log(data);
     } catch (error) {
