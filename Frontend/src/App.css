@@ -11,7 +11,12 @@
 .search-container {
   margin: 20px;
 }
-
+.additional-image {
+  width: 300px;
+  /* 設置寬度，根據實際需求調整 */
+  height: auto;
+  /* 保持寬高比，讓高度根據寬度自動調整 */
+}
 input {
   padding: 10px;
   font-size: 16px;

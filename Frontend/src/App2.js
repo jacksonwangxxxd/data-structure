@@ -1,6 +1,6 @@
 // App.js
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function SearchResultList({ results }) {
@@ -53,7 +53,7 @@ function App() {
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/search?query=${query}`);
+      const response = await fetch(`http://localhost:8080/search?query=${searchTerm}`);
       const data = await response.json();
       setResults(data.results);
       console.log(data);

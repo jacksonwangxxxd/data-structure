@@ -33,6 +33,7 @@ function StockWatchlist({ stocks, onStockClick }) {
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState([]);
+  const [showImage, setShowImage] = useState(false);
   const [stockWatchlist, setStockWatchlist] = useState([
     { name: '台積電', price: ' $' + 579.00, change: -2.36 },
     { name: '聯電', price: ' $' + 50.6, change: -2.50 },
@@ -75,6 +76,8 @@ function App() {
             { "title": "永豐金官方網站", "link": "https://www.sinotrade.com.tw/newweb/" },
           ]
         };
+      } else if (searchTerm == "電子") {
+        setShowImage(searchTerm == "電子")
       }
 
       setResults(data.results);
@@ -104,6 +107,12 @@ function App() {
         </div>
         <div className="main-container">
           <SearchResultList results={results} />
+          {showImage && (
+            <img
+              src={`${process.env.PUBLIC_URL}/cloud.jpg`}
+              alt="Your Image"
+              className="additional-image"
+            />)}
           <StockWatchlist stocks={stockWatchlist} onStockClick={onStockClick} />
 
         </div>
