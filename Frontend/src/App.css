@@ -76,10 +76,83 @@ button:active {
   /* 添加按下時的縮小效果 */
 }
 
-.results-container {
-  text-align: left;
-}
-
 .image-container {
   margin-top: 20px;
+}
+
+
+.results-container {
+  width: 50%;
+  float: left;
+  text-align: left;
+}
+/* App.css */
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.search-container {
+  margin-bottom: 20px;
+}
+
+.main-container {
+  display: flex;
+}
+
+.list-container {
+  flex: 1;
+  padding: 20px;display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.list-item {
+  padding: 10px;
+  margin: 10px 0;
+background-color: #282c34;  color: #fff;
+  border-radius: 5px;border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    width: 300px;
+}
+
+.stock-watchlist {
+  width: 30%;
+  padding: 20px;
+  background-color: #61dafb;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.stock-item {
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #61dafb;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.stock-change {
+  margin-left: 10px;
+}
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
 }
