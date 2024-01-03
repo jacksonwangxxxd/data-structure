@@ -78,25 +78,33 @@ function App() {
       if(searchTerm=='台積電'){
         var data = {
           "results": [
-            { "title": "台積電官方網站", "link": "https://www.umc.com/" },
             { "title": "台積電股票價格即時行情", "link": "https://tw.stock.yahoo.com/quote/2330.TW" },
             { "title": "台積電技術分析報告", "link": "https://tw.stock.yahoo.com/quote/2330.TW/technical-analysis" },
+            { "title": "台積電官方網站", "link": "https://www.tsmc.com/chinese" },
           ]
         };
       }else if (searchTerm=='聯電'){
         var data = {
           "results": [
-            { "title": "聯電官方網站", "link": "https://www.umc.com/" },
             { "title": "聯電股票價格即時行情", "link": "https://tw.stock.yahoo.com/quote/2303.TW" },
             { "title": "聯電技術分析報告", "link": "https://tw.stock.yahoo.com/quote/2303.TW/technical-analysis" },
+            { "title": "聯電官方網站", "link": "https://www.umc.com/" },
           ]
         };
       }else if (searchTerm=='鴻海'){
         var data = {
           "results": [
-            { "title": "鴻海官方網站", "link": "https://www.umc.com/" },
             { "title": "鴻海股票價格即時行情", "link": "https://tw.stock.yahoo.com/quote/2317.TW" },
             { "title": "鴻海技術分析報告", "link": "https://tw.stock.yahoo.com/quote/2317.TW/technical-analysis" },
+            { "title": "鴻海官方網站", "link": "https://www.honhai.com/zh-tw/" },
+          ]
+        };
+      }else if (searchTerm=='永豐金'){
+        var data = {
+          "results": [
+            { "title": "永豐金股票價格即時行情", "link": "https://tw.stock.yahoo.com/quote/2890.TW" },
+            { "title": "永豐金技術分析報告", "link": "https://tw.stock.yahoo.com/quote/2890.TW/technical-analysis" },
+            { "title": "永豐金官方網站", "link": "https://www.sinotrade.com.tw/newweb/" },
           ]
         };
       }
