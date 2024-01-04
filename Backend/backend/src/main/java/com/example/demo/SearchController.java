@@ -58,6 +58,7 @@ public class SearchController {
                 // 使用 Comparator 根據 "score" 進行排序
                 jsonObjectList.sort(Comparator.comparing(obj -> obj.getString("score")));
 
+                System.out.println(jsonObjectList);
                 return resultsArray.getJSONObject(0).toString();
             } catch (IOException e) {
                 e.printStackTrace();

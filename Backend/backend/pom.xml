@@ -35,6 +35,19 @@
 			<artifactId>spring-web</artifactId>
 			<version>6.1.2</version>
 		</dependency>
+    <!-- 其他相依性 -->
+    <dependency>
+        <groupId>io.vertx</groupId>
+        <artifactId>vertx-core</artifactId>
+        <version>4.2.5</version> <!-- 檢查最新的版本號 -->
+    </dependency>
+
+    <!-- Spark -->
+    <dependency>
+        <groupId>com.sparkjava</groupId>
+        <artifactId>spark-core</artifactId>
+        <version>2.9.3</version>
+    </dependency>
 
 
 
@@ -61,6 +74,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
 		</dependency>
 	</dependencies>
 
