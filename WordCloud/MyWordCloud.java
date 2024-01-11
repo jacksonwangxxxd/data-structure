@@ -15,6 +15,7 @@ import java.util.List;
 public class MyWordCloud {
 
     /*
+    	呼叫generateWordCloud(String inputText)
 	輸入:搜尋框裡面的字串
  	輸出:在當前的資料夾新增 worldcloud.png
     */
