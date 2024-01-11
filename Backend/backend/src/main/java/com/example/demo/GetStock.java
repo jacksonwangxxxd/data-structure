@@ -15,16 +15,15 @@ import java.net.URL;
 public class GetStock {
 
     @GetMapping("/getStock")
-    public static String[] getStock() {
-        String apiKey = "3NL508Z2BKD9KVXD";
-        String[] symbols = { "AAPL", "TSLA", "NVDA", "GOOG", "META", "MSFT" };
-        // String[] symbols_TW = {"2330.TW", "2454.TW", "2317.TW", "2412.TW", "2382.TW",
-        // "2881.TW"};
+    	public static ArrayList<String> getStock() {
 
+        ArrayList<String> stockList = new ArrayList<String>();
+        String apiKey = "JM1N9CEPJO8R6R3G";
+        String[] symbols = {"AAPL", "TSLA", "NVDA", "GOOG", "META"};
+        
         for (String symbol : symbols) {
             try {
-                String apiUrl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + symbol + "&apikey="
-                        + apiKey;
+                String apiUrl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + symbol + "&apikey=" + apiKey;
                 URL url = new URL(apiUrl);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -43,25 +42,22 @@ public class GetStock {
                 JSONObject globalQuote = jsonResponse.optJSONObject("Global Quote");
 
                 if (globalQuote != null && !globalQuote.isEmpty()) {
-                    String name = globalQuote.optString("01. symbol", "N/A");
-                    String price = globalQuote.optString("05. price", "N/A");
-                    String change = globalQuote.optString("10. change percent", "N/A");
-                    change = change.substring(0, change.length() - 3);
-                    change += "%";
+                    String stockName = globalQuote.optString("01. symbol", "N/A");
+                    String currentPrice = globalQuote.optString("05. price", "N/A");
+                    currentPrice = String.format("$%.2f", Double.valueOf(currentPrice));
+                    String changePercent = globalQuote.optString("10. change percent", "N/A");
+                    changePercent = String.format("%.2f%%", Double.valueOf(changePercent.substring(0, changePercent.length()-1)));
 
-                    String[] result = { name, price, change };
-                    return result;
-
+                    stockList.add(stockName + " " + currentPrice + " " + changePercent);
+                    
                 } else {
                     System.out.println("股票查詢失敗");
-
                 }
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-
-        return null;
-    }
+        return stockList;
+	}
 }
