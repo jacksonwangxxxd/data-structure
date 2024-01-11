@@ -4,26 +4,31 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class GetStock {
 
+    /*
+        呼叫 getStock(apiKey, symbols)
+        輸出:ArrayList<String> stockList
+     */
+
+    // 到 https://www.alphavantage.co/ 點選 GET FREE API KEY 取得金鑰
+    static String apiKey = "3NL508Z2BKD9KVXD";
+    // 放進想查詢的股票名稱
+    static String[] symbols = {"AAPL", "TSLA", "NVDA", "GOOG", "META"};
+
     public static void main(String[] args) {
-    	// 到 https://www.alphavantage.co/ 點選 GET FREE API KEY 取得金鑰
-        String apiKey = "3NL508Z2BKD9KVXD";
-        // 放進想查詢的股票名稱
-        String[] symbols = {"AAPL", "TSLA", "NVDA", "GOOG", "META", "MSFT"};
-//        String[] symbols_TW = {"2330.TW", "2454.TW", "2317.TW", "2412.TW", "2382.TW", "2881.TW"};
-        
-        getStock(apiKey, symbols);
-
-
-	/* 
- 		你要拿的是字串型態的stockName、currentPrice、changePercent
-	*/
-
+        ArrayList<String> stockList = getStock(apiKey, symbols);
+        // for(String s : stockList){
+        //     System.out.println(s);
+        // }
     }
 
-	public static void getStock(String apiKey, String[] symbols) {
+	public static ArrayList<String> getStock(String apiKey, String[] symbols) {
+
+        ArrayList<String> stockList = new ArrayList<String>();
+
         for (String symbol : symbols) {
             try {
                 String apiUrl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + symbol + "&apikey=" + apiKey;
@@ -47,13 +52,16 @@ public class GetStock {
                 if (globalQuote != null && !globalQuote.isEmpty()) {
                     String stockName = globalQuote.optString("01. symbol", "N/A");
                     String currentPrice = globalQuote.optString("05. price", "N/A");
+                    currentPrice = String.format("$%.2f", Double.valueOf(currentPrice));
                     String changePercent = globalQuote.optString("10. change percent", "N/A");
-                    changePercent = changePercent.substring(0, changePercent.length()-3);
-                    changePercent += "%";
+                    changePercent = String.format("%.2f%%", Double.valueOf(changePercent.substring(0, changePercent.length()-1)));
 
-                    System.out.printf("股票名稱: %s\n", stockName);
-                    System.out.printf("當前價格: %.2f\n", Double.valueOf(currentPrice));
-                    System.out.printf("當日漲跌幅: %s\n", changePercent);
+                    stockList.add(stockName + " " + currentPrice + " " + changePercent);
+                    
+
+                    // System.out.printf("股票名稱: %s\n", stockName);
+                    // System.out.printf("當前價格: %.2f\n", Double.valueOf(currentPrice));
+                    // System.out.printf("當日漲跌幅: %.2f%\n", Double.valueOf(changePercent.substring(0, changePercent.length())));
                     
                 } else {
                     System.out.println("股票查詢失敗");
@@ -63,5 +71,6 @@ public class GetStock {
                 e.printStackTrace();
             }
         }
+        return stockList;
 	}
 }
