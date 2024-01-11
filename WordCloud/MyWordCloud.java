@@ -14,6 +14,12 @@ import java.util.List;
 
 public class MyWordCloud {
 
+    /*
+	輸入:搜尋框裡面的字串
+ 	輸出:在當前的資料夾新增 worldcloud.png
+    */
+
+	
     // 資料庫資訊
     static String url = "jdbc:mysql://127.0.0.16/word";
 	static String username = "root";
